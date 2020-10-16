@@ -1,10 +1,20 @@
-const http = require('http')
+const express = require('express')
 
-const server = http.Server()
+const app = express()
 
-server.on('request', (request, response) => {
-    response.write('Hello world')
-    response.end()
+app.set('view engine', 'ejs')
+app.set('default-src', 'none')
+
+app.use(express.static('views'))
+
+// res.header('Content-Security-Policy', 'img-src' 'self');
+
+app.all('/', function (req, resp) {
+    // resp.header('Content-Security-Policy', 'img-src' = 'self');
+    resp.render('index', {
+        tasks: ['Create a Web application', 'commit to github', '']
+    })
 })
 
-server.listen(1730)
+
+app.listen(1331)

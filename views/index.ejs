@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>TODO List</title>
+  </head>
+  <body>
+    <h2>TODO List</h2>
+
+    <form action="" method="post">
+      <ol>
+        <% for(var i in tasks){ %>
+        <li><input type="text" value='<%= tasks[i] %>' /></li>
+        <% } %>
+      </ol>
+    </form>
+  </body>
+</html>
