@@ -1,18 +1,28 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express()
 
+
+let tasks = ['Create a nice web service project', 'Work for a nice company', 'be consistent', '']
+
 app.set('view engine', 'ejs')
-app.set('default-src', 'none')
+// app.set('default-src', 'none')
 
-app.use(express.static('views'))
 
-// res.header('Content-Security-Policy', 'img-src' 'self');
+app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(express.static('views'))
+
+
 
 app.all('/', function (req, resp) {
-    // resp.header('Content-Security-Policy', 'img-src' = 'self');
+    // receive the new tasks and save it
+    if (req.body.tasks) {
+        tasks = req.body.tasks.filter(function (val) { return val; });
+        tasks.push('');
+    }
     resp.render('index', {
-        tasks: ['Create a Web application', 'commit to github', '']
+        tasks: tasks
     })
 })
 
